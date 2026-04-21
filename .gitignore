@@ -77,6 +77,8 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+dimulacao_monte_carlo/aula_sim_monte_carlo.ipynb
+dimulacao_monte_carlo/simulacao_monte_carlo.ipynb
 
 # IPython
 profile_default/
