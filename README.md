@@ -48,10 +48,22 @@ Conjunto de notebooks explicando o que é simulação e a técnica de Monte Carl
 
 - **Stack:** Python, NumPy, Pandas, Matplotlib
 - **Notebooks:**
-  - [`dimulacao_monte_carlo/simulacao_monte_carlo.ipynb`](dimulacao_monte_carlo/simulacao_monte_carlo.ipynb) — aula completa, do conceito à prática: o que é simulação, para que serve (e para que **não** serve), com exemplos e visualizações.
-  - [`dimulacao_monte_carlo/aula_sim_monte_carlo.ipynb`](dimulacao_monte_carlo/aula_sim_monte_carlo.ipynb) — versão enxuta da aula, ideal para revisão rápida.
   - [`dimulacao_monte_carlo/figurinhas_copa.ipynb`](dimulacao_monte_carlo/figurinhas_copa.ipynb) — aplicação prática: estimar quantas figurinhas da Copa são necessárias para completar o álbum usando simulações.
   - [`dimulacao_monte_carlo/yt_sim_carlo.ipynb`](dimulacao_monte_carlo/yt_sim_carlo.ipynb) — exemplo usado no vídeo do YouTube sobre simulação de Monte Carlo.
+
+---
+
+### 🏆 Previsão da Copa do Mundo 2026
+
+Modelo de Machine Learning para prever o campeão da Copa do Mundo de 2026 com base em dados históricos de seleções.
+
+- **Notebook:** [`previsao_wc_2026/previsao_copa_26.ipynb`](previsao_wc_2026/previsao_copa_26.ipynb)
+- **Dados:** [`previsao_wc_2026/features_wc.csv`](previsao_wc_2026/features_wc.csv)
+- **Stack:** Python, Pandas, NumPy, Scikit-learn
+- **Como funciona:**
+  1. Carrega features históricas de seleções desde copas anteriores (ELO rating, ranking FIFA, títulos, ataque, defesa, meio-campo, desempenho recente em jogos).
+  2. Treina e compara múltiplos classificadores (RandomForest, GradientBoosting, AdaBoost, ExtraTrees, MLP, SVC) com validação cruzada.
+  3. Seleciona o melhor modelo e gera probabilidades de vitória para cada seleção na Copa de 2026.
 
 ---
 
