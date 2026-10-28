@@ -2,7 +2,7 @@
 
 Códigos e notebooks utilizados nas aulas do canal [Educa Prática](https://github.com/Educa-Pratica).
 
-Repositório com exemplos práticos de **IA agêntica**, **deploy na nuvem com Modal** e **simulação de Monte Carlo**, todos acompanhados nos vídeos do canal.
+Repositório com exemplos práticos de **IA agêntica**, **LLMs locais e embeddings**, **deploy na nuvem com Modal**, **simulação de Monte Carlo** e **geração automática de slides**, todos acompanhados nos vídeos do canal.
 
 ---
 
@@ -64,6 +64,68 @@ Modelo de Machine Learning para prever o campeão da Copa do Mundo de 2026 com b
   1. Carrega features históricas de seleções desde copas anteriores (ELO rating, ranking FIFA, títulos, ataque, defesa, meio-campo, desempenho recente em jogos).
   2. Treina e compara múltiplos classificadores (RandomForest, GradientBoosting, AdaBoost, ExtraTrees, MLP, SVC) com validação cruzada.
   3. Seleciona o melhor modelo e gera probabilidades de vitória para cada seleção na Copa de 2026.
+
+---
+
+### 🧠 EmbeddingGemma 2 — Embeddings na prática
+
+Notebook introdutório ao modelo de embeddings **EmbeddingGemma 2** do Google, mostrando o que são embeddings e suas principais aplicações.
+
+- **Notebook:** [`gemmaembeddings/embeddinggemma2_exemplos.ipynb`](gemmaembeddings/embeddinggemma2_exemplos.ipynb)
+- **Recursos de exemplo:** [`gemmaembeddings/praia.jpg`](gemmaembeddings/praia.jpg), [`gemmaembeddings/montanha.jpg`](gemmaembeddings/montanha.jpg), [`gemmaembeddings/pug.jpg`](gemmaembeddings/pug.jpg)
+- **Stack:** Python, sentence-transformers, transformers
+- **Como funciona:**
+  1. Carrega o modelo apenas com os recursos de texto e código (≈270M parâmetros).
+  2. Gera o primeiro embedding e calcula similaridade de cosseno entre textos.
+  3. Demonstra uma mini busca semântica e classificação por similaridade (`prompt_name="Classification"`) sem treinar um classificador.
+  4. Explora a técnica **Matryoshka** (comparar 768, 256 e 128 dimensões) e busca em código por linguagem natural.
+  5. Opcional: busca de imagens a partir de texto (cross-modal retrieval), carregando os recursos de visão (≈440M parâmetros).
+
+---
+
+### 💻 LLMs locais
+
+Exemplo de como chamar um **LLM rodando localmente** através de um endpoint compatível com a API da OpenAI.
+
+- **Notebook:** [`llm_locais/chamada.ipynb`](llm_locais/chamada.ipynb)
+- **Stack:** LangChain (`init_chat_model`), servidor local compatível com OpenAI (`http://127.0.0.1:8080/v1`)
+- **Como funciona:**
+  1. Sobem um modelo no formato GGUF (ex.: `Bielik-Minitron-7B`) em um servidor local expondo a API da OpenAI.
+  2. Usam `init_chat_model` do LangChain apontando `base_url` para o servidor local.
+  3. Enviam um prompt e imprimem a resposta gerada — tudo sem depender de serviços na nuvem.
+
+---
+
+### 🤏 Laya — Decisões estruturadas vs. classificadores clássicos
+
+Comparação de abordagens para **classificação de sentimento** (positivo/negativo) em avaliações de produtos em português.
+
+- **Notebooks:**
+  - [`laya/Testando_o_Laya.ipynb`](laya/Testando_o_Laya.ipynb) — compara a abordagem clássica supervisionada (TF-IDF + Regressão Logística) com APIs de "decisões" estruturadas (Jev, OpenAI Decisions) e com a lib `laya`.
+  - [`laya/Testando_o_OADecisions.ipynb`](laya/Testando_o_OADecisions.ipynb) — foca no uso das APIs de decisão estruturada e do `laya.Router` para responder perguntas do tipo `choice`.
+- **Dados:** [`laya/class.xlsx`](laya/class.xlsx)
+- **Stack:** Python, scikit-learn, NLTK, pandas, `laya`, OpenRouter
+- **Como funciona:**
+  1. Carrega a base de reviews rotulados (`class.xlsx`).
+  2. Treina um baseline clássico com TF-IDF + Regressão Logística.
+  3. Define uma pergunta estruturada (`{"type": "choice", ...}`) e a responde via Jev, OpenAI Decisions e `laya.Router` (`router.predict`).
+  4. Compara os `classification_report`s de cada abordagem.
+
+---
+
+### 🖼️ Criar Slides — Geração automática de apresentações
+
+Gera as imagens de um slide deck com a API do **GPT-Image-2** (via OpenRouter) e monta automaticamente um arquivo **.pptx** pronto para apresentar.
+
+- **Notebook:** [`criarSlides/gerar_slides.ipynb`](criarSlides/gerar_slides.ipynb)
+- **Descrições de entrada:** [`criarSlides/slides_descricao.md`](criarSlides/slides_descricao.md)
+- **Exemplo gerado:** [`criarSlides/apresentacao.pptx`](criarSlides/apresentacao.pptx)
+- **Stack:** Python, requests, python-pptx, python-dotenv
+- **Como funciona:**
+  1. Lê a descrição de cada slide a partir de um arquivo `.md`.
+  2. Gera cada imagem de slide com o modelo `openai/gpt-image-2` (proporção 16:9) e salva em `criarSlides/imagens/`.
+  3. Lê as imagens geradas e monta o `.pptx` com `python-pptx`.
+- **Observação:** requer a variável `OPENROUTER_API_KEY` definida no arquivo `.env`.
 
 ---
 
