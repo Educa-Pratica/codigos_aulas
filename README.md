@@ -129,6 +129,26 @@ Gera as imagens de um slide deck com a API do **GPT-Image-2** (via OpenRouter) e
 
 ---
 
+### 📊 PowerPoint OpenCode — Slides nativos com design system
+
+Gera um **.pptx nativo** (formas, texto e ícones vetoriais — não imagens) a partir de um arquivo de descrição, seguindo um **design system** próprio.
+
+- **Descrição dos slides:** [`powerpoint_opencode/slides.md`](powerpoint_opencode/slides.md)
+- **Design system:** [`powerpoint_opencode/estilos/DESIGN_SYSTEM_SLIDES.md`](powerpoint_opencode/estilos/DESIGN_SYSTEM_SLIDES.md)
+- **Ícones (SVG):** [`powerpoint_opencode/estilos/icones_design_system_slides/icons/`](powerpoint_opencode/estilos/icones_design_system_slides/icons)
+- **Gerador:** [`powerpoint_opencode/scripts/gerar_slides.js`](powerpoint_opencode/scripts/gerar_slides.js)
+- **Apresentação gerada:** [`powerpoint_opencode/agentes_de_ia.pptx`](powerpoint_opencode/agentes_de_ia.pptx)
+- **Stack:** Node.js, `pptxgenjs`, `sharp`; QA visual com LibreOffice + PyMuPDF
+- **Como funciona:**
+  1. Lê a descrição dos slides (`slides.md`) e o design system (cores, tipografia, espaçamento, grid e ícones).
+  2. Monta o layout em px (canvas 1920×1080), rasteriza os ícones SVG e gera o `.pptx` nativo com `pptxgenjs`.
+  3. Faz o QA visual (SVG→PNG e LibreOffice→PDF→PyMuPDF) e valida a estrutura do arquivo.
+- **Como rodar:**
+  1. `npm install pptxgenjs sharp` (dentro de `powerpoint_opencode/`)
+  2. `node powerpoint_opencode/scripts/gerar_slides.js`
+
+---
+
 ## 🚀 Como usar
 
 1. Clone o repositório:
